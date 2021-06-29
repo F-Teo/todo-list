@@ -1,8 +1,8 @@
 <template>
-    <form>
+    <form @submit.prevent="getValue">
         <input type="text" v-model="value" placeholder="Введите текст">
-        <input type="button" v-on:click.prevent="currentValue" value="Click">
-        <p>Сообщение: {{ value }}</p>
+        <input type="submit" value="Click">
+        <p>Сообщение: {{ currentValue }}</p>
     </form>
 </template>
 
@@ -10,15 +10,15 @@
 export default {
     data: function() {
         return {
-            value: ''
+            value: '',
+            currentValue: ''
         }
     },
     methods: {
-        currentValue: function(event) {
-            if(this.value === this.value) {
-                event.target.value
-            }
-        }
+        getValue: function() {
+            this.currentValue = this.value;
+            this.value = ''
+        },
     }
 }
 </script>
