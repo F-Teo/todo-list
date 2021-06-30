@@ -24,7 +24,9 @@ export default {
     },
     methods: {
         getValue: function() {
-            this.listValue.push({'title': this.value, 'id': ''})
+            this.listValue.push({
+                'title': this.value, 
+                'id': this.listValue.length + 1})
             this.value = ''
         },
     }
