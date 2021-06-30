@@ -1,22 +1,30 @@
 <template>
-    <form @submit.prevent="getValue">
+    <div>
+        <form @submit.prevent="getValue">
         <input type="text" v-model="value" placeholder="Введите текст">
         <input type="submit" value="Click">
-        <p>Сообщение: {{ currentValue }}</p>
     </form>
+
+    <TodoList v-bind:listValue="listValue" />
+    </div>
 </template>
 
 <script>
+import TodoList from './TodoList.vue'
+
 export default {
+    components: {
+        TodoList
+    },
     data: function() {
         return {
             value: '',
-            currentValue: ''
+            listValue: []
         }
     },
     methods: {
         getValue: function() {
-            this.currentValue = this.value;
+            this.listValue.push({'title': this.value, 'id': ''})
             this.value = ''
         },
     }
