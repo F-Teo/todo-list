@@ -1,10 +1,20 @@
 <template>
     <ol>
-        <li v-for="item in listValue" v-bind:key="item.id" v-bind:class="{'done': item.checked}">
+        <li 
+            v-for="(item, index) of listValue" 
+            v-bind:key="item.id" 
+            v-bind:class="{'done': item.checked}">
+
             <label>
-                <input type="checkbox" name="checkbox" v-model="item.checked">
+                <input 
+                    type="checkbox" 
+                    name="checkbox" 
+                    v-model="item.checked">
+
                 {{ item.title }}
             </label>
+
+            <button v-on:click="remove(index)">Удалить</button>
         </li>
     </ol>
 </template>
@@ -15,6 +25,11 @@ export default {
         listValue: {
             type: Array,
             required: true
+        }
+    },
+    methods: {
+        remove(index) {
+            this.listValue.splice(index, 1)
         }
     }
 }
