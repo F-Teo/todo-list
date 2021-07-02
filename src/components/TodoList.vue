@@ -29,7 +29,8 @@ export default {
     },
     methods: {
         remove(index) {
-            this.listValue.splice(index, 1)
+            this.listValue.splice(index, 1);
+            localStorage.setItem('value', JSON.stringify(this.listValue))
         }
     }
 }
