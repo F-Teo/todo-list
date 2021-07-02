@@ -1,7 +1,10 @@
 <template>
     <ol>
-        <li v-for="item in listValue" v-bind:key="item.id">
-            {{ item.title }}
+        <li v-for="item in listValue" v-bind:key="item.id" v-bind:class="{'done': item.checked}">
+            <label>
+                <input type="checkbox" name="checkbox" v-model="item.checked">
+                {{ item.title }}
+            </label>
         </li>
     </ol>
 </template>
@@ -16,3 +19,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .done {
+        text-decoration: line-through;
+    }
+</style>
