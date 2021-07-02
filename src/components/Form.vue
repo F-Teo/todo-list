@@ -22,13 +22,28 @@ export default {
             listValue: []
         }
     },
+    mounted() {
+        if(localStorage.getItem('value')) {
+            try {
+                this.listValue = JSON.parse(localStorage.getItem('value'))
+            } catch {
+                localStorage.removeItem('value')
+            }            
+        }
+    },
     methods: {
         getValue: function() {
             this.listValue.push({
                 'title': this.value, 
-                'id': this.listValue.length + 1})
+                'checked': false});
+                
             this.value = ''
+            this.saveValue();
         },
-    }
+        saveValue() {
+            const parse = JSON.stringify(this.listValue);
+            localStorage.setItem('value', parse)
+        }
+    },
 }
 </script>
